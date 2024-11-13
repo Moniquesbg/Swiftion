@@ -1,0 +1,86 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="root" type="rootType"/>
+  <xs:complexType name="dataType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="transactionRef"/>
+      <xs:element type="xs:string" name="id"/>
+      <xs:element type="xs:string" name="user_id"/>
+      <xs:element type="xs:string" name="date_added"/>
+      <xs:element type="xs:string" name="account_identification"/>
+      <xs:element type="xs:string" name="statement_number"/>
+      <xs:element name="statement_line_id">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="cost_center_id"/>
+      <xs:element name="transaction_type_id">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="value_date"/>
+      <xs:element type="xs:string" name="entry_date"/>
+      <xs:element name="amount">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="transaction_type"/>
+      <xs:element name="identification_code">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="payment_reference">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="transaction_reference">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="additional_information">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="statement_line_narrative">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="custom_description"/>
+      <xs:element type="xs:string" name="opening_balance_transaction_type_id"/>
+      <xs:element type="xs:string" name="opening_balance_currency_type_id"/>
+      <xs:element type="xs:string" name="opening_balance_date"/>
+      <xs:element type="xs:string" name="opening_blanace"/>
+      <xs:element type="xs:string" name="closing_balance_transaction_type_id"/>
+      <xs:element type="xs:string" name="closing_balance_currency_type_id"/>
+      <xs:element type="xs:string" name="closing_balance_date"/>
+      <xs:element type="xs:string" name="closing_balance"/>
+      <xs:element type="xs:string" name="closing_available_balance_transaction_type_id"/>
+      <xs:element type="xs:string" name="closing_available_balance_currency_type_id"/>
+      <xs:element type="xs:string" name="closing_available_balance_date"/>
+      <xs:element type="xs:string" name="closing_available_balance"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rootType">
+    <xs:sequence>
+      <xs:element type="dataType" name="data" maxOccurs="unbounded" minOccurs="1"/>
+      <xs:element type="xs:string" name="status"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,94 @@
+<!-- kostenplaats modal start -->
+<div th:fragment="html_cost_center_modal"
+     th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}' id="addCostCenterModel"
+     class="modal modal-xl" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kostenplaats overzicht</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div style="max-height:400px; overflow-y: auto;">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Kostenplaats</th>
+                            <th scope="col">Type</th>
+                            <th scope="col"><small> Aantal .940 transacties </small></th>
+                            <th scope="col"><small> Totaal bedrag .940 </small></th>
+                            <th th:if="${plugins.get(1).get('online') == true || plugins.get(1).get('online') == 1}"
+                                scope="col"><small>Aantal kasgeld transacties</small></th>
+                            <th th:if="${plugins.get(1).get('online') == true || plugins.get(1).get('online') == 1}"
+                                scope="col"><small>Totaal bedrag kasgeld</small></th>
+                            <th th:if="${auth.get('role') != '1'}" scope="col">Actie</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- start cost-center custom transaction -->
+                        <tr th:each="cost_center,iter : ${cost_center_mt940}">
+                            <td th:text="${cost_center_mt940.get(iter.index).get('cost_center_name')}"></td>
+                            <td th:text="${cost_center_mt940.get(iter.index).get('transaction_type_name')}"></td>
+                            <td th:text="${cost_center_mt940.get(iter.index).get('swift_copy_total')}"></td>
+                            <td th:text="${cost_center_mt940.get(iter.index).get('swift_copy_amount')}"></td>
+                            <td th:if="${plugins.get(1).get('online') == true || plugins.get(1).get('online') == 1}">
+                                <div th:each="kasgeld : ${cost_center_custom_transaction}"
+                                     th:if="${cost_center_mt940.get(iter.index).get('transaction_type_name') == 'Credit'}">
+                                    <p th:if="${kasgeld.get('cost_center_id') == cost_center_mt940.get(iter.index).get('cost_center_id')}"
+                                       th:text="${kasgeld.get('custom_transaction_total')}">
+
+                                    </p>
+                                </div>
+                                <div th:each="kasgeld : ${cost_center_custom_transaction}"
+                                     th:if="${cost_center_mt940.get(iter.index).get('transaction_type_name') == 'Debit'}">
+                                    <p th:if="${kasgeld.get('cost_center_id') == cost_center_mt940.get(iter.index).get('cost_center_id')}"
+                                       th:text="N.V.T.">
+
+                                    </p>
+                                </div>
+                            </td>
+                            <td th:if="${plugins.get(1).get('online') == true || plugins.get(1).get('online') == 1}">
+                                <div th:each="kasgeld : ${cost_center_custom_transaction}"
+                                     th:if="${cost_center_mt940.get(iter.index).get('transaction_type_name') == 'Credit'}">
+                                    <p th:if="${kasgeld.get('cost_center_id') == cost_center_mt940.get(iter.index).get('cost_center_id')}"
+                                       th:text="${kasgeld.get('custom_transaction_amount') == '' ? 0 : kasgeld.get('custom_transaction_amount')}">
+                                    </p>
+                                </div>
+                                <div th:each="kasgeld : ${cost_center_custom_transaction}"
+                                     th:if="${cost_center_mt940.get(iter.index).get('transaction_type_name') == 'Debit'}">
+                                    <p th:if="${kasgeld.get('cost_center_id') == cost_center_mt940.get(iter.index).get('cost_center_id')}"
+                                       th:text="N.V.T.">
+                                    </p>
+                                </div>
+                            </td>
+                            <td th:if="${auth.get('role') != '1'}">
+                                <form id="delete-form-cost-center"
+                                      th:action="${'/transaction-overview/delete/cost-center/' + cost_center.get('cost_center_id')}"
+                                      method="post">
+                                    <input type="hidden" name="name"
+                                           th:value="${cost_center_mt940.get(iter.index).get('cost_center_name')}">
+                                    <button onclick="return confirm('Weet u zeker dat u dit wilt verwijderen?')"
+                                            style="background: none; border:none;" class="btn-link"
+                                            type="submit" name="submit" value="submit"><img
+                                            src="./img/icons/delete.png"></button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div th:if="${auth.get('role') != '1'}" class="modal-footer">
+                <form class="d-flex justify-content-right w-100" id="addCostCenter"
+                      th:action="${'/transaction-overview/insert/cost-center'}" method="post">
+                    <label class="w-50 me-2">
+                        <input class="form-control" required placeholder="Nieuwe kostenplaats" type="text"
+                               th:name="cost-center">
+                    </label>
+                    <button type="submit" class="w-50 btn custom-btn-general">kostenplaats toevoegen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- kostenplaats modal end -->

@@ -1,0 +1,65 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="root" type="rootType"/>
+	<xs:complexType name="dataType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="id"/>
+			<xs:element type="xs:string" name="swift_copy_id"/>
+			<xs:element type="xs:string" name="cost_center_id"/>
+			<xs:element name="transaction_type_id">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1" />
+						<xs:enumeration value="2" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="value_date">
+				<xs:simpleType>
+					<xs:restriction base="xs:date"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="entry_date">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:pattern value="[0-9][0-9][0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="amount">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]+([.,][0-9]{1,2})"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="transaction_type">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="N"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element type="xs:string" name="identification_code"/>
+			<xs:element type="xs:string" name="payment_reference"/>
+			<xs:element type="xs:string" name="transaction_reference"/>
+			<xs:element type="xs:string" name="additional_information"/>
+			<xs:element type="xs:string" name="statement_line_narrative"/>
+			<xs:element type="xs:string" name="custom_description"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rootType">
+		<xs:sequence>
+			<xs:element type="dataType" name="data"/>
+			<xs:element name="status">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="success" />
+						<xs:enumeration value="failed" />
+						<xs:enumeration value="true" />
+						<xs:enumeration value="false" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

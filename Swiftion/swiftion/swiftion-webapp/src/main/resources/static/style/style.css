@@ -1,0 +1,417 @@
+* {
+    box-sizing: border-box;
+}
+
+/*Font*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+@font-face {
+    font-family: mainandra_gd;
+    src: url("../font/mainandra_gd.TTF");
+}
+
+/*Var*/
+:root {
+    --bg-color: rgba(0, 0, 0, 0.5);
+    --bg-color-light: rgba(255, 255, 255, 0.7);
+    --card-border-color: #CB3F3F;
+    --input-border-color: #CB3F3F;
+    --btn-border-color: #CB3F3F;
+    --link-hover-color: #CB3F3F;
+    --input-placeholder-color: #707070;
+    --border-radius: 0.75rem;
+}
+.form-check .form-check-input{
+    float: unset;
+    margin: 0;
+}
+/* placeholder css */
+*::-webkit-input-placeholder {
+    color: var(--input-placeholder-color);
+}
+
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: var(--input-placeholder-color);
+    opacity: .5;
+}
+
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: var(--input-placeholder-color);
+    opacity: .5;
+}
+
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: var(--input-placeholder-color);
+    opacity: .5;
+}
+
+*::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--input-placeholder-color);
+    opacity: .5;
+}
+
+*::placeholder {
+    /* modern browser */
+    color: var(--input-placeholder-color);
+    opacity: .5;
+}
+
+/*user form input*/
+.input-form {
+    border-color: var(--input-border-color);
+}
+
+/*Buttons*/
+.custom-btn {
+    background-color: rgba(0, 0, 0, 40%);
+    border-color: var(--btn-border-color);
+    color: #fff;
+    border-radius: var(--border-radius);
+    padding: 0.2rem 1.5rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+}
+
+.custom-btn:hover, .custom-btn:focus, .custom-btn:active {
+    background-color: rgba(0, 0, 0, 60%) !important;
+    border-color: var(--btn-border-color) !important;;
+    color: #fff !important;;
+    border-radius: var(--border-radius) !important;;
+    padding: 0.2rem 1.5rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+}
+
+html,
+body {
+    height: 100%;
+    font-size: 16px;
+    font-family: "mainandra_gd", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Roboto", sans-serif;
+}
+
+#login-container.bg-img {
+    background-image: url("../img/background/background-login.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.card {
+    border-color: var(--card-border-color);
+    background-color: var(--bg-color);
+    min-width: 675px;
+    border-radius: var(--border-radius);
+}
+
+.card-light {
+    border-color: var(--card-border-color);
+    background-color: var(--bg-color-light);
+    border-radius: var(--border-radius);
+    width: 255px;
+    font-size: 12px;
+}
+.scroll-container {
+    max-height: 645px;
+    overflow-y: auto;
+}
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+#profile.card {
+    min-width: unset !important;
+}
+
+#login-container .login-img {
+    margin: 2.5rem 0 3.5rem 0;
+}
+
+#login-container .form-control {
+    border-color: var(--input-border-color);
+    border-radius: var(--border-radius);
+    max-width: 536px;
+    font-size: 1.3rem;
+    display: inline;
+}
+
+#login-container i {
+    margin-left: -30px;
+    cursor: pointer;
+}
+
+#login-container .form-control:focus {
+    box-shadow: 0 0 0 0.2rem #e75e5e4d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.bg-general {
+    height: 100%;
+    width: 100%;
+    background-image: url("../img/background/background-general.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    background-attachment: fixed;
+}
+
+/* start navbar */
+
+.navbar-management {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-bg:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.navbar-fade {
+    -webkit-transition: background-color 1s;
+    -moz-transition: background-color 1s;
+    -o-transition: background-color 1s;
+    transition: background-color 1s;
+}
+
+.margin-navbar-right {
+    margin-right: 120px;
+}
+
+.margin-navbar-left {
+    margin-left: 90px;
+}
+
+.navbar-icon {
+    width: 40px;
+}
+
+.dropdown-settings-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid #CB3F3F;
+    border-radius: 20px;
+    position: absolute;
+    width: 200px;
+    right: 120px;
+    top: 115px;
+    z-index: 999;
+}
+
+.list-group-settings {
+    padding-left: 0px;
+}
+
+.list-group-item-settings {
+    list-style-type: none;
+    width: 170px;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-link:hover {
+    text-decoration: none;
+    color: var(--link-hover-color);
+}
+
+.settings-divider {
+    border: 1px solid white;
+    height: 1px;
+    margin: auto auto;
+    width: 170px;
+}
+
+/* end navbar */
+/* start container template */
+.row-custom-styling {
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--card-border-color);
+    height: 75vh;
+}
+
+/* end container template */
+/* transaction-overview start */
+.transaction-row-custom-styling, .user-overview-row-custom-styling, .plugin-row-custom-styling {
+    background-color: var(--bg-color-light) !important;
+    height: 60vh;
+    max-height:1000px;
+    overflow-y: auto;
+}
+
+.transaction-custom-btn, .user-overview-custom-btn {
+    font-size: 1rem;
+}
+
+.transaction-custom-btn:hover, .transaction-custom-btn:focus, .transaction-custom-btn:active,
+.user-overview-custom-btn:hover, .user-overview-custom-btn:focus, .user-overview-custom-btn:active {
+    font-size: 1rem;
+}
+
+.tr-custom-style {
+    border: var(--card-border-color);
+    border-radius: var(--border-radius);
+}
+
+.transaction-table-icon-custom, .user-overview-table-icon-custom {
+    height: 20px;
+}
+
+.transaction-filter-box {
+    position: absolute;
+    right: 112px;
+    top: 260px;
+    width: 400px;
+    height: 200px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--border-radius);
+}
+
+/* transaction-overiew end */
+/* edit-cash-transaction start */
+.transaction-description-custom-styling {
+    height: 315px;
+}
+
+/* edit-cash-transaction end */
+
+.input-search-icon {
+    margin-left: 4px;
+    background-color: var(--bg-color-light);
+}
+
+.input-search-icon:hover {
+    background-color: white;
+}
+
+.table-list-item-custom {
+    list-style-type: none;
+}
+
+.select-custom-styling {
+    border-radius: var(--border-radius);
+    width: 250px;
+    height: 30px;
+}
+
+.custom-btn-general {
+    background-color: rgba(0, 0, 0, 60%);
+    border-color: var(--btn-border-color);
+    color: #fff;
+    border-radius: var(--border-radius);
+    padding: 0.2rem 1.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+}
+
+.custom-btn-general:hover, .custom-btn-general:focus, .custom-btn-general:active {
+    background-color: rgba(0, 0, 0, 80%) !important;
+    border-color: var(--btn-border-color) !important;;
+    color: #fff !important;;
+    border-radius: var(--border-radius) !important;;
+    padding: 0.2rem 1.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+}
+
+.custom-btn-small {
+    background-color: rgba(0, 0, 0, 60%);
+    border-color: var(--btn-border-color);
+    color: #fff;
+    border-radius: var(--border-radius);
+    font-size: 0.65rem;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+}
+
+.custom-btn-small:hover, .custom-btn-small:focus, .custom-btn-small:active {
+    background-color: rgba(0, 0, 0, 80%) !important;
+    border-color: var(--btn-border-color) !important;;
+    color: #fff !important;;
+    border-radius: var(--border-radius) !important;;
+    font-size: 0.65rem;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+}
+
+/* Afschrift overzicht */
+
+.height-content-card {
+    height: 34%;
+}
+/*view afschrift pagina*/
+.split{
+    border: 1px solid white;
+}
+
+.margin-left-subtitles{
+    margin-left:4%;
+}
+
+.margin-top-col{
+    margin-top:8%;
+}
+
+.textarea{
+    width:88%;
+    height:94%;
+}
+
+.delete-icon{
+    width: 15px;
+    height: 18px;
+}
+
+.view-icon{
+    width:20px;
+    height:15px;
+}
+
+.width-icons-between {
+    width: 20%;
+}
+
+#information-for-account-holder {
+    height: 380px;
+}
+
+.error-msg {
+    margin-bottom: 0px;
+}
+
+.fill-empty-space {
+    width: 255px;
+}
+
+.dot {
+    border-radius: 50%;
+    border: 1px solid black;
+    height: 15px;
+    width: 15px;
+    margin: auto 0;
+}
+
+.dot-red {
+    background-color: #CB3F3F;
+}
+
+.dot-green {
+    background-color: #00bd48;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Transaction overview</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+<!-- start main container -->
+<div class="h-100 d-flex justify-content-center">
+    <div class="container mt-3">
+        <div class="row">
+            <h1 class="text-white">Transactieoverzicht</h1>
+        </div>
+        <section id="errormessage" data-th-insert="~{messageHandeling :: html_message}"></section>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-12 justify-content-between d-flex">
+                        <div class="col-4">
+                            <div class="input-group mb-3">
+                                <input id="transaction-search" type="text" class="form-control" placeholder="Search..."
+                                       aria-label="search">
+                                <div class="input-group-append">
+                                    <button class="btn input-search-icon" type="button">
+                                        <img height="30px" src="./img/icons/search-icon.svg">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="list-group list-group-horizontal">
+                                <li class="table-list-item-custom me-2">
+                                    <button th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}'
+                                         data-bs-toggle="modal" data-bs-target="#costCenterStatistics"
+                                         class="btn transaction-custom-btn custom-btn pt-2 pb-2"
+                                         name="add-transaction">
+                                         <small>
+                                             Kostenplaats statistieken
+                                         </small>
+                                        <img class="transaction-table-icon-custom ms-2" src="img/icons/graph-chart.png">
+                                    </button>
+                                </li>
+                                <li class="table-list-item-custom me-2">
+                                    <button th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}'
+                                         data-bs-toggle="modal" data-bs-target="#addCostCenterModel"
+                                         class="btn transaction-custom-btn custom-btn pt-2 pb-2"
+                                         name="add-transaction">
+                                        Kostenplaats
+                                        <img class="transaction-table-icon-custom ms-2" src="img/icons/cost-center.png">
+                                    </button>
+                                </li>
+                                <li th:if="${auth.get('role') != '1'}" class="table-list-item-custom">
+                                    <a th:if='${plugins.get(1).get("online") == true || plugins.get(1).get("online") == 1}'
+                                       href="/add-custom-transaction">
+                                        <button class="btn transaction-custom-btn custom-btn pt-2 pb-2"
+                                                name="add-transaction">
+                                            Kasgeld transactie
+                                            toevoegen &nbsp;
+                                            <img class="transaction-table-icon-custom" src="img/icons/add-file.png">
+                                        </button>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center">
+                            <div class="row-custom-styling transaction-row-custom-styling w-100"
+                                 style="max-height:1000px; overflow-y: auto;">
+                                <table id="transaction-table" class="table">
+                                    <thead>
+                                    <tr>
+                                        <th th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}'
+                                            scope="col">Kostenplaats
+                                        </th>
+                                        <th scope="col">Betalingskenmerk</th>
+                                        <th scope="col">Boek/betaaldatum</th>
+                                        <th scope="col">Bedrag</th>
+                                        <th scope="col">Afschrift</th>
+                                        <th scope="col">Informatie rekeninghouder</th>
+                                        <th scope="col">Eigen Omschrijving</th>
+                                        <th scope="col">Actie</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- start custom transaction -->
+                                    <tr th:if='${custom_transaction != null && plugins.get(1).get("online") == true || custom_transaction != null && plugins.get(1).get("online") == 1}'
+                                        th:each="cust_transaction : ${custom_transaction}" class="tr-custom-style">
+                                        <td th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}'
+                                            th:text="${cust_transaction.get('cost_center_name')}"></td>
+                                        <td th:text="Contant"></td>
+                                        <td th:text="${cust_transaction.get('payment_date')}"></td>
+                                        <td th:text="${cust_transaction.get('currency_symbol')} + ' ' + ${cust_transaction.get('amount')}"></td>
+                                        <td>N.V.T.</td>
+                                        <td>N.V.T.</td>
+                                        <td th:text="${cust_transaction.get('custom_transaction_description')}"></td>
+                                        <td>
+                                            <ul class="list-group list-group-horizontal">
+                                                <li class="me-4 table-list-item-custom">
+                                                    <a th:href="'/edit-custom-transaction?id=' + ${cust_transaction.get('custom_transaction_id')}">
+                                                        <img class="transaction-table-icon-custom"
+                                                             src="img/icons/view-record-black.png">
+                                                    </a>
+                                                </li>
+                                                <li th:if="${auth.get('role') != '1'}" class="table-list-item-custom">
+                                                    <form id="delete-form"
+                                                          th:action="${'/edit-custom-transaction/delete/' + cust_transaction.get('custom_transaction_id')}"
+                                                          method="post">
+                                                        <button onclick="return confirm('Weet u zeker dat u dit wilt verwijderen?')"
+                                                                style="background: none; border:none;" class="btn-link"
+                                                                type="submit" name="submit" value="submit"><img
+                                                                src="./img/icons/delete.png"></button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <!-- start mt940 transaction -->
+                                    <tr th:if="${mt940_transaction != null}"
+                                        th:each="mt940_transaction : ${mt940_transaction}" class="tr-custom-style">
+                                        <td th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}'
+                                            th:text="${mt940_transaction.get('cost_center_name')}"></td>
+                                        <td th:text="${mt940_transaction.get('payment_reference')}"></td>
+                                        <td th:text="${mt940_transaction.get('value_date')}"></td>
+                                        <td th:if="${mt940_transaction.get('transaction_type_id') == 1}">
+                                            <p th:text="${'-' + mt940_transaction.get('amount')}">
+
+                                            </p>
+                                        </td>
+                                        <td th:if="${mt940_transaction.get('transaction_type_id') == 2}">
+                                            <p th:text="${'+' + mt940_transaction.get('amount')}">
+
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <a th:href="'/view-swift-copy?id=' + ${mt940_transaction.get('swift_copy_id')}">
+                                                Afschrift
+                                            </a>
+                                        </td>
+                                        <td th:width="50px"
+                                            th:text="${mt940_transaction.get('transaction_narrative')}"></td>
+                                        <td th:width="50px"
+                                            th:text="${mt940_transaction.get('custom_description')}"></td>
+                                        <td>
+                                            <ul class="list-group list-group-horizontal">
+                                                <li class="me-4 table-list-item-custom">
+                                                    <a th:href="'/view-transaction?id=' + ${mt940_transaction.get('transaction_id')}">
+                                                        <img class="transaction-table-icon-custom"
+                                                             src="img/icons/view-record-black.png">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- start modals -->
+<section data-th-insert="~{cost_center_modal :: html_cost_center_modal}"></section>
+<section data-th-insert="~{cost_center_statistics :: html_cost_center_statistics}"></section>
+<!-- end modals -->
+
+<!-- search table start -->
+<script>
+
+    $(function () {
+        $("#transaction-search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#transaction-table > tbody > tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+</script>
+<!-- search table stop -->
+
+<!-- end main container  -->
+</body>
+</html>

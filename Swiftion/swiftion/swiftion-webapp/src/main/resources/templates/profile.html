@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Profiel</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+<!-- start main container -->
+<div class="h-100 d-flex justify-content-center">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div id="profile" class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <section id="errormessage"
+                                         data-th-insert="~{messageHandeling :: html_message}"></section>
+                                <div class="d-flex justify-content-center">
+                                    <h1 class="text-white">Profiel</h1>
+                                </div>
+                                <form th:action="${'/profile/update/' + data.get(0).get('id')}" method="post"
+                                      id="username-update">
+                                    <div class="row">
+                                        <div class="col-2"></div>
+                                        <div class="col-8 mb-3">
+                                            <div class="form-group">
+                                                <label for="username" class="text-white">Gebruikersnaam</label>
+                                                <input class="form-control mx-auto" type="email" id="username"
+                                                       name="username"
+                                                       th:value="${data.get(0).get('email')}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2"></div>
+                                        <div class="col-8 mb-3">
+                                            <div class="form-group">
+                                                <label for="firstname" class="text-white">Voornaam</label>
+                                                <input class="form-control mx-auto" type="text" id="firstname"
+                                                       name="firstname"
+                                                       th:value="${data.get(0).get('firstname')}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2"></div>
+                                        <div class="col-8 mb-3">
+                                            <div class="form-group">
+                                                <label label="lastname" class="text-white">Achternaam</label>
+                                                <input class="form-control mx-auto" type="text" id="lastname"
+                                                       name="lastname"
+                                                       th:value="${data.get(0).get('lastname')}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2"></div>
+                                        <div class="col-8 mb-3">
+                                            <div class="form-group">
+                                                <label for="role" class="text-white">Rol</label>
+                                                <input class="form-control mx-auto" type="text" id="role" name="role"
+                                                       th:value="${data.get(0).get('rolename')}" readonly="readonly">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-2"></div>
+                                    <div class="col-4">
+                                        <button class="custom-btn-general mx-auto w-100 h-100" type="submit"
+                                                onclick="document.getElementById('username-update').submit()">
+                                            Opslaan
+                                        </button>
+                                    </div>
+                                    <div class="col-4">
+                                        <a th:href="${'/edit-password'}">
+                                            <button class="custom-btn-small mx-auto w-100 h-100">
+                                                Wachtwoord wijzigen
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end main container  -->
+</body>

@@ -1,0 +1,46 @@
+<nav class="navbar navbar-bg navbar-fade" th:fragment="html_navbar">
+    <a href="/swift-copy-overview" class="navbar-brand margin-navbar-left">
+        <img src="img/logo/swiftion-logo-navbar.png">
+    </a>
+    <div class="navbar-center d-none d-xs-none d-sm-none d-md-none d-lg-block">
+        <span class="me-5">
+        <a class="navbar-management navbar-link" href="/swift-copy-overview">Afschriftenbeheer</a>
+      </span>
+        <span class="me-5">
+        <a class="navbar-management navbar-link" href="/transaction-overview">Transactiebeheer</a>
+      </span>
+        <span class="me-5">
+        <a class="navbar-management navbar-link" href="/user-overview">Gebruikersbeheer</a>
+      </span>
+    </div>
+    <div class="navbar-end">
+      <span class="me-5">
+        <a href="/logout"><img class="navbar-icon" src="img/icons/logout.png"></a>
+      </span>
+        <span class="margin-navbar-right">
+        <a data-bs-toggle="collapse" href="#settings-collapse" role="button" aria-expanded="false"
+           aria-controls="settings-collapse"><img class="navbar-icon" src="img/icons/settings.png">
+        </a>
+      </span>
+        <!-- content of settings collapse -->
+        <div class="dropdown-settings-content collapse" id="settings-collapse">
+            <ul class="list-group-settings">
+                <li class="list-group-item-settings ms-3 mt-2 mb-2 d-flex justify-content-between">
+                    <a class="navbar-link" href="/profile">
+                        Profiel
+                    </a>
+                    <img height="20px" src="img/icons/settings-dropdown-profile.png">
+                </li>
+                <div class="settings-divider"></div>
+                <li class="list-group-item-settings ms-3 mt-2 d-flex justify-content-between">
+                    <a class="navbar-link" href="/settings">
+                        Application settings
+                    </a>
+                    <img src="img/icons/settings-dropdown-plugin.png">
+                </li>
+            </ul>
+        </div>
+        <!-- end of settings content collapse -->
+    </div>
+</nav>
+<!-- end navbar -->

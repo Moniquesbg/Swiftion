@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Login</title>
+</head>
+<body>
+<div class="bg-img" id="login-container">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <section id="errormessage" data-th-insert="~{messageHandeling :: html_message}"></section>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <img class="img-fluid login-img" src="./img/logo/small.png" alt="Swiftion logo">
+                    </div>
+                </div>
+                <form action="/" method="post">
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8 mb-3">
+                            <div class="form-group">
+                                <input class="form-control mx-auto" type="text" id="username" name="username"
+                                       placeholder="Gebruikersnaam">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8 mb-3">
+                            <div class="form-group mx-auto">
+                                <input class="form-control mx-auto" type="password" id="psw" name="psw"
+                                       placeholder="Wachtwoord">
+                                <i class="bi bi-eye" onclick="togglePassword('psw')"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8 mb-3">
+                            <span class="text-white"><b>Communicatie modus</b></span>
+                            <div class="form-check ps-0">
+                                <input class="form-check-input align-middle" value="JSON" type="radio" name="comMode"
+                                       id="jsonMode" checked>
+                                <label class="form-check-label text-white" for="jsonMode">
+                                    JSON
+                                </label>
+                            </div>
+                            <div class="form-check ps-0">
+                                <input class="form-check-input align-middle" value="XML" type="radio" name="comMode"
+                                       id="xmlMode">
+                                <label class="form-check-label text-white" for="xmlMode">
+                                    XML
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8 mb-3">
+                            <div class="form-group mx-auto">
+                                <button class="btn custom-btn mx-auto w-100" type="submit">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="/javascript/show-password.js"></script>

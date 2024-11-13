@@ -1,0 +1,188 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1679661205.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data",
+    "status"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "amount",
+          "identification_code",
+          "statement_line_narrative",
+          "cost_center_id",
+          "transaction_type",
+          "payment_reference",
+          "entry_date",
+          "transaction_type_id",
+          "additional_information",
+          "id",
+          "transaction_reference",
+          "custom_description",
+          "swift_copy_id",
+          "value_date"
+        ],
+        "properties": {
+          "amount": {
+            "$id": "#root/data/items/amount",
+            "title": "Amount",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "7,29"
+            ],
+            "pattern": "^[0-9]+([.,][0-9]{1,2})?$"
+          },
+          "identification_code": {
+            "$id": "#root/data/items/identification_code",
+            "title": "Identification_code",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "TRF"
+            ],
+            "pattern": "^.*$"
+          },
+          "statement_line_narrative": {
+            "$id": "#root/data/items/statement_line_narrative",
+            "title": "Statement_line_narrative",
+            "type": "string",
+            "default": ""
+          },
+          "cost_center_id": {
+            "$id": "#root/data/items/cost_center_id",
+            "title": "Cost_center_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "transaction_type": {
+            "$id": "#root/data/items/transaction_type",
+            "title": "Transaction_type",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "N"
+            ],
+            "pattern": ".*N.*"
+          },
+          "payment_reference": {
+            "$id": "#root/data/items/payment_reference",
+            "title": "Payment_reference",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "NONREF"
+            ],
+            "pattern": "^.*$"
+          },
+          "entry_date": {
+            "$id": "#root/data/items/entry_date",
+            "title": "Entry_date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "0208"
+            ],
+            "pattern": "^\\d{4}$"
+          },
+          "transaction_type_id": {
+            "$id": "#root/data/items/transaction_type_id",
+            "title": "transaction_type_id",
+            "type": "integer",
+            "enum": [1, 2],
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "additional_information": {
+            "$id": "#root/data/items/additional_information",
+            "title": "Additional_information",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "/TRCD/02002/"
+            ],
+            "pattern": "^.*$"
+          },
+          "id": {
+            "$id": "#root/data/items/id",
+            "title": "Id",
+            "type": "integer",
+            "examples": [
+              209
+            ],
+            "default": 0
+          },
+          "transaction_reference": {
+            "$id": "#root/data/items/transaction_reference",
+            "title": "Transaction_reference",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "23039504296674"
+            ],
+            "pattern": "^.*$"
+          },
+          "custom_description": {
+            "$id": "#root/data/items/custom_description",
+            "title": "Custom_description",
+            "type": "string",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "swift_copy_id": {
+            "$id": "#root/data/items/swift_copy_id",
+            "title": "Swift_copy_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "value_date": {
+            "$id": "#root/data/items/value_date",
+            "title": "Value_date",
+            "format": "date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2023-02-08"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "enum": ["success", "failed", "true", "false"],
+      "default": "",
+      "examples": [
+        "success"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}

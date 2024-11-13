@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - User overview</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+<!-- start main container -->
+<div class="container h-100 mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div id="profile" class="card text-white">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h1 class="text-white mb-4">Settings</h1>
+                            <span class="text-white"><b>Communicatie modus</b></span>
+                            <form action="/settings" method="post">
+                                <div class="form-check ps-0">
+                                    <label class="form-check-label text-white">
+                                        <input class="form-check-input align-middle" onchange="this.form.submit()"
+                                               th:if='${mode == "xml"}'
+                                               value="JSON" type="radio" name="comMode">
+                                        <input class="form-check-input align-middle" onchange="this.form.submit()"
+                                               th:if='${mode != "xml"}'
+                                               value="JSON" type="radio" name="comMode" checked>
+                                        JSON
+                                    </label>
+                                </div>
+                                <div class="form-check ps-0">
+                                    <label class="form-check-label text-white">
+                                        <input class="form-check-input align-middle" onchange="this.form.submit()"
+                                               th:if='${mode == "json"}'
+                                               value="XML" type="radio" name="comMode">
+                                        <input class="form-check-input align-middle" onchange="this.form.submit()"
+                                               th:if='${mode != "json"}'
+                                               value="XML" type="radio" name="comMode" checked>
+
+                                        XML
+                                    </label>
+                                </div>
+                            </form>
+                            <a th:if="${role == '2'}" href="/plugin">
+                                <button class="custom-btn-general mx-auto w-100 mt-3">
+                                    Plugin beheer
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end main container  -->
+</body>
+
+</html>

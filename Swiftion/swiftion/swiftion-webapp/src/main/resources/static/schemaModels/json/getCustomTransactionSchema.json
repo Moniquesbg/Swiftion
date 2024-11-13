@@ -1,0 +1,103 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1680009701.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data",
+    "status"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "amount",
+          "currency_symbol",
+          "custom_transaction_id",
+          "cost_center_name",
+          "payment_date",
+          "custom_transaction_description"
+        ],
+        "properties": {
+          "amount": {
+            "$id": "#root/data/items/amount",
+            "title": "Amount",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "35.00"
+            ],
+            "pattern": "^[0-9]+([.,][0-9]{1,2})?$"
+          },
+          "currency_symbol": {
+            "$id": "#root/data/items/currency_symbol",
+            "title": "Currency_symbol",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "â‚¬"
+            ],
+            "pattern": "^.*$"
+          },
+          "custom_transaction_id": {
+            "$id": "#root/data/items/custom_transaction_id",
+            "title": "Custom_transaction_id",
+            "type": "integer",
+            "examples": [
+              7
+            ],
+            "default": 0
+          },
+          "cost_center_name": {
+            "$id": "#root/data/items/cost_center_name",
+            "title": "Cost_center_name",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Algemeen"
+            ],
+            "pattern": "^.*$"
+          },
+          "payment_date": {
+            "$id": "#root/data/items/payment_date",
+            "title": "Payment_date",
+            "type": "string",
+            "format": "date",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "custom_transaction_description": {
+            "$id": "#root/data/items/custom_transaction_description",
+            "title": "custom_transaction_description",
+            "type": "string",
+            "default": "",
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "enum": ["success", "failed", "true", "false"],
+      "default": "",
+      "examples": [
+        "success"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}

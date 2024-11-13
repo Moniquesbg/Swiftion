@@ -1,0 +1,126 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1680010315.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data",
+    "status"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "amount",
+          "currency_symbol",
+          "cost_center_id",
+          "custom_transaction_id",
+          "name",
+          "description",
+          "payment_date",
+          "currency_type_id"
+        ],
+        "properties": {
+          "amount": {
+            "$id": "#root/data/items/amount",
+            "title": "Amount",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "35.00"
+            ],
+            "pattern": "^[0-9]+([.,][0-9]{1,2})?$"
+          },
+          "currency_symbol": {
+            "$id": "#root/data/items/currency_symbol",
+            "title": "Currency_symbol",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "â‚¬"
+            ],
+            "pattern": "^.*$"
+          },
+          "cost_center_id": {
+            "$id": "#root/data/items/cost_center_id",
+            "title": "Cost_center_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "custom_transaction_id": {
+            "$id": "#root/data/items/custom_transaction_id",
+            "title": "Custom_transaction_id",
+            "type": "integer",
+            "examples": [
+              7
+            ],
+            "default": 0
+          },
+          "name": {
+            "$id": "#root/data/items/name",
+            "title": "Name",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Algemeen"
+            ],
+            "pattern": "^.*$"
+          },
+          "description": {
+            "$id": "#root/data/items/description",
+            "title": "Description",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "test"
+            ],
+            "pattern": "^.*$"
+          },
+          "payment_date": {
+            "$id": "#root/data/items/payment_date",
+            "title": "Payment_date",
+            "format" : "date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "currency_type_id": {
+            "$id": "#root/data/items/currency_type_id",
+            "title": "Currency_type_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          }
+        }
+      }
+
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "default": "",
+      "enum": ["success", "failed", "true", "false"],
+      "examples": [
+        "success"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}

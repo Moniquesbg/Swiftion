@@ -1,0 +1,365 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1680208855.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data",
+    "status"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "identification_code",
+          "closing_available_balance_transaction_type_id",
+          "entry_date",
+          "opening_balance_currency_type_id",
+          "closing_available_balance",
+          "transaction_type_id",
+          "closing_balance_transaction_type_id",
+          "closing_available_balance_date",
+          "closing_balance",
+          "id",
+          "transaction_reference",
+          "opening_blanace",
+          "statement_number",
+          "opening_balance_date",
+          "amount",
+          "statement_line_narrative",
+          "closing_balance_date",
+          "cost_center_id",
+          "transactionRef",
+          "opening_balance_transaction_type_id",
+          "closing_balance_currency_type_id",
+          "transaction_type",
+          "payment_reference",
+          "date_added",
+          "additional_information",
+          "statement_line_id",
+          "account_identification",
+          "closing_available_balance_currency_type_id",
+          "user_id",
+          "custom_description",
+          "value_date"
+        ],
+        "properties": {
+          "identification_code": {
+            "$id": "#root/data/items/identification_code",
+            "title": "Identification_code",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "TRF"
+            ],
+            "pattern": "^.*$"
+          },
+          "closing_available_balance_transaction_type_id": {
+            "$id": "#root/data/items/closing_available_balance_transaction_type_id",
+            "title": "Closing_available_balance_transaction_type_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "entry_date": {
+            "$id": "#root/data/items/entry_date",
+            "title": "Entry_date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "0208"
+            ],
+            "pattern": "^.*$"
+          },
+          "opening_balance_currency_type_id": {
+            "$id": "#root/data/items/opening_balance_currency_type_id",
+            "title": "Opening_balance_currency_type_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "closing_available_balance": {
+            "$id": "#root/data/items/closing_available_balance",
+            "title": "Closing_available_balance",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "62961,95"
+            ],
+            "pattern": "^.*$"
+          },
+          "transaction_type_id": {
+            "$id": "#root/data/items/transaction_type_id",
+            "title": "transaction_type_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "closing_balance_transaction_type_id": {
+            "$id": "#root/data/items/closing_balance_transaction_type_id",
+            "title": "Closing_balance_transaction_type_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "closing_available_balance_date": {
+            "$id": "#root/data/items/closing_available_balance_date",
+            "title": "Closing_available_balance_date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2023-02-08 00:00:00.0"
+            ],
+            "pattern": "^.*$"
+          },
+          "closing_balance": {
+            "$id": "#root/data/items/closing_balance",
+            "title": "Closing_balance",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "62961,95"
+            ],
+            "pattern": "^.*$"
+          },
+          "id": {
+            "$id": "#root/data/items/id",
+            "title": "Id",
+            "type": "integer",
+            "examples": [
+              3
+            ],
+            "default": 0
+          },
+          "transaction_reference": {
+            "$id": "#root/data/items/transaction_reference",
+            "title": "Transaction_reference",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "23039504296674"
+            ],
+            "pattern": "^.*$"
+          },
+          "opening_blanace": {
+            "$id": "#root/data/items/opening_blanace",
+            "title": "Opening_blanace",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "64042,27"
+            ],
+            "pattern": "^.*$"
+          },
+          "statement_number": {
+            "$id": "#root/data/items/statement_number",
+            "title": "Statement_number",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "00000"
+            ],
+            "pattern": "^.*$"
+          },
+          "opening_balance_date": {
+            "$id": "#root/data/items/opening_balance_date",
+            "title": "Opening_balance_date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2023-02-07 00:00:00.0"
+            ],
+            "pattern": "^.*$"
+          },
+          "amount": {
+            "$id": "#root/data/items/amount",
+            "title": "Amount",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "7,29"
+            ],
+            "pattern": "^.*$"
+          },
+          "statement_line_narrative": {
+            "$id": "#root/data/items/statement_line_narrative",
+            "title": "Statement_line_narrative",
+            "type": "string",
+            "pattern": "^*$"
+          },
+          "closing_balance_date": {
+            "$id": "#root/data/items/closing_balance_date",
+            "title": "Closing_balance_date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2023-02-08 00:00:00.0"
+            ],
+            "pattern": "^.*$"
+          },
+          "cost_center_id": {
+            "$id": "#root/data/items/cost_center_id",
+            "title": "Cost_center_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "transactionRef": {
+            "$id": "#root/data/items/transactionRef",
+            "title": "Transactionref",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "P230209000000001"
+            ],
+            "pattern": "^.*$"
+          },
+          "opening_balance_transaction_type_id": {
+            "$id": "#root/data/items/opening_balance_transaction_type_id",
+            "title": "Opening_balance_transaction_type_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "closing_balance_currency_type_id": {
+            "$id": "#root/data/items/closing_balance_currency_type_id",
+            "title": "Closing_balance_currency_type_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "transaction_type": {
+            "$id": "#root/data/items/transaction_type",
+            "title": "Transaction_type",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "N"
+            ],
+            "pattern": "^.*$"
+          },
+          "payment_reference": {
+            "$id": "#root/data/items/payment_reference",
+            "title": "Payment_reference",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "NONREF"
+            ],
+            "pattern": "^.*$"
+          },
+          "date_added": {
+            "$id": "#root/data/items/date_added",
+            "title": "Date_added",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2023-03-30 22:17:31.0"
+            ],
+            "pattern": "^.*$"
+          },
+          "additional_information": {
+            "$id": "#root/data/items/additional_information",
+            "title": "Additional_information",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "/TRCD/02002/"
+            ],
+            "pattern": "^.*$"
+          },
+          "statement_line_id": {
+            "$id": "#root/data/items/statement_line_id",
+            "title": "Statement_line_id",
+            "type": "integer",
+            "examples": [
+              16
+            ],
+            "default": 0
+          },
+          "account_identification": {
+            "$id": "#root/data/items/account_identification",
+            "title": "Account_identification",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "NL23INGB0678567859EUR"
+            ],
+            "pattern": "^.*$"
+          },
+          "closing_available_balance_currency_type_id": {
+            "$id": "#root/data/items/closing_available_balance_currency_type_id",
+            "title": "Closing_available_balance_currency_type_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "user_id": {
+            "$id": "#root/data/items/user_id",
+            "title": "User_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "custom_description": {
+            "$id": "#root/data/items/custom_description",
+            "title": "Custom_description",
+            "type": "string",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "value_date": {
+            "$id": "#root/data/items/value_date",
+            "title": "Value_date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2023-02-08"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "success"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}

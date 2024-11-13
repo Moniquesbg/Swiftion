@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Profiel</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+
+<!-- start main container -->
+<div class="h-100 d-flex justify-content-center">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h1 class="text-white">Gebruiker toevoegen</h1>
+                <div id="adduser" class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <section id="errormessage"
+                                         data-th-insert="~{messageHandeling :: html_message}"></section>
+                                <form action="/add-user/insert" method="POST">
+                                    <div class="d-flex flex-column mx-auto w-50">
+                                        <label class="text-white" for="email">E-mail adres</label>
+                                        <input required class="rounded border border-none" type="email" id="email"
+                                               name="email">
+                                    </div>
+                                    <div class="d-flex flex-column mx-auto w-50 mt-3">
+                                        <label class="text-white" for="voornaam">Voornaam</label>
+                                        <input required class="rounded border border-none" type="text" id="voornaam"
+                                               name="voornaam">
+                                    </div>
+                                    <div class="d-flex flex-column mx-auto w-50 mt-3">
+                                        <label class="text-white" for="achternaam">Achternaam</label>
+                                        <input required class="rounded border border-none" type="text" id="achternaam"
+                                               name="achternaam">
+                                    </div>
+                                    <div class="d-flex flex-column mx-auto w-50 mt-3">
+                                        <label class="text-white" for="wachtwoord">Wachtwoord</label>
+                                        <p class="w-100">
+                                            <input required class="rounded border border-none w-100" type="password"
+                                                   id="wachtwoord"
+                                                   name="wachtwoord">
+                                            <i style="margin-left: -30px; cursor: pointer" class="bi bi-eye"
+                                               onclick="togglePassword('wachtwoord')"></i>
+                                        </p>
+                                    </div>
+                                    <div class="d-flex flex-column mx-auto w-50 mt-3">
+                                        <label class="text-white" for="rol">Rol</label>
+                                        <select required class="p-1 rounded" id="rol" name="rol">
+                                            <option th:each="role : ${roles}" th:value="${role.get('role_id')}"
+                                                    th:text="${role.get('name')}"></option>
+                                        </select>
+                                        <button class="btn custom-btn-general mt-5" name="addUser" value="addUser">
+                                            Gebruiker toevoegen
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end main container  -->
+</body>
+</html>
+
+<script src="/javascript/show-password.js"></script>

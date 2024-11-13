@@ -1,0 +1,5 @@
+<div th:fragment="html_message" th:if="${messageHandling != null}" class="alert alert-info alert-dismissible fade show"
+     role="alert">
+    <div th:text="${messageHandling.get(0).get('message')}"></div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>

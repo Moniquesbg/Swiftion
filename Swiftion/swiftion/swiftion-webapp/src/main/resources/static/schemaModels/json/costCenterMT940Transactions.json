@@ -1,0 +1,81 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1680208519.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data",
+    "status"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "swift_copy_amount",
+          "cost_center_id",
+          "cost_center_name",
+          "swift_copy_total"
+        ],
+        "properties": {
+          "swift_copy_amount": {
+            "$id": "#root/data/items/swift_copy_amount",
+            "title": "Swift_copy_amount",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "15,103.74"
+            ],
+            "pattern": "^.*$"
+          },
+          "cost_center_id": {
+            "$id": "#root/data/items/cost_center_id",
+            "title": "Cost_center_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "cost_center_name": {
+            "$id": "#root/data/items/cost_center_name",
+            "title": "Cost_center_name",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Algemeen"
+            ],
+            "pattern": "^.*$"
+          },
+          "swift_copy_total": {
+            "$id": "#root/data/items/swift_copy_total",
+            "title": "Swift_copy_total",
+            "type": "integer",
+            "examples": [
+              22
+            ],
+            "default": 0
+          }
+        }
+      }
+
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "success"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}

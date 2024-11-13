@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Profiel</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+
+<!-- start main container -->
+<div class="h-100 d-flex justify-content-center">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h1 class="text-white">Gebruiker bewerken</h1>
+                <div id="edituser" class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <section id="errormessage"
+                                         data-th-insert="~{messageHandeling :: html_message}"></section>
+                                <form th:method="POST"
+                                      th:action="'/edit-user/update/' + ${user_details.get(0).get('id')}">
+                                    <div class="d-flex flex-column mx-auto w-50">
+                                        <label class="w-100 text-white">E-mail adres
+                                            <input th:if="${auth.get('role') != '1'}"
+                                                   th:value="${user_details.get(0).get('email')}"
+                                                   class="rounded border w-100 input-form" type="email" name="email">
+                                            <input th:if="${auth.get('role') == '1'}"
+                                                   th:value="${user_details.get(0).get('email')}"
+                                                   class="rounded border w-100 input-form" type="email" name="email"
+                                                   readonly>
+                                        </label>
+                                    </div>
+                                    <div class="d-flex flex-column mx-auto w-50 mt-3">
+                                        <label class="text-white">Voornaam
+                                            <input th:if="${auth.get('role') != '1'}"
+                                                   th:value="${user_details.get(0).get('firstname')}"
+                                                   class="w-100 rounded border border-none" type="text"
+                                                   name="voornaam">
+                                            <input th:if="${auth.get('role') == '1'}"
+                                                   th:value="${user_details.get(0).get('firstname')}"
+                                                   class="w-100 rounded border border-none" type="text"
+                                                   name="voornaam"
+                                                   readonly
+                                            >
+                                        </label>
+                                    </div>
+                                    <div class="d-flex flex-column mx-auto w-50 mt-3">
+                                        <label class="text-white">Achternaam
+                                            <input th:if="${auth.get('role') != '1'}"
+                                                   th:value="${user_details.get(0).get('lastname')}"
+                                                   class="w-100 rounded border border-none" type="text"
+                                                   name="achternaam"
+                                                   placeholder="testachternaam">
+                                            <input th:if="${auth.get('role') == '1'}"
+                                                   th:value="${user_details.get(0).get('lastname')}"
+                                                   class="w-100 rounded border border-none" type="text"
+                                                   name="achternaam"
+                                                   placeholder="testachternaam" readonly>
+                                        </label>
+                                    </div>
+                                    <div class="d-flex flex-column mx-auto w-50 mt-3">
+                                        <label class="text-white">Rol
+                                            <select name="rol" th:if="${auth.get('role') != '1'}"
+                                                    class="p-1 w-100 rounded border border-none" id="rol">
+                                                <option th:text="${user_details.get(0).get('rolename')}"
+                                                        th:value="${user_details.get(0).get('role_id')}"
+                                                        selected></option>
+                                                <option th:each="role : ${roles}"
+                                                        th:if="${user_details.get(0).get('role_id')} != ${role.get('role_id')}"
+                                                        th:text="${role.get('name')}"
+                                                        th:value="${role.get('role_id')}"></option>
+                                            </select>
+                                            <input th:if="${auth.get('role') == '1'}"
+                                                   th:value="${user_details.get(0).get('rolename')}"
+                                                   class="w-100 rounded border border-none" type="text"
+                                                   name="rol"
+                                                   placeholder="rol"
+                                                   readonly>
+                                        </label>
+                                        <button th:if="${auth.get('role') != '1'}" class="btn custom-btn w-80 mt-5"
+                                                name="addUser" value="addUser" type="submit">
+                                            Wijzigingen opslaan
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end main container  -->
+</body>
+
+</html>

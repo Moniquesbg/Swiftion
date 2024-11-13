@@ -1,0 +1,51 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.com/object1680013546.json",
+    "title": "Root",
+    "type": "object",
+    "required": [
+        "data",
+        "status"
+    ],
+    "properties": {
+        "data": {
+            "$id": "#root/data",
+            "title": "Data",
+            "type": "array",
+            "default": [],
+            "items":{
+                "$id": "#root/data/items",
+                "title": "Items",
+                "type": "object",
+                "required": [
+                    "message"
+                ],
+                "properties": {
+                    "message": {
+                        "$id": "#root/data/items/message",
+                        "title": "Message",
+                        "type": "string",
+                        "default": "",
+                        "examples": [
+                            "something went wrong with calling the procedure, please contact your system admin"
+                        ],
+                        "pattern": "^.*$"
+                    }
+                }
+            }
+
+        },
+        "status": {
+            "$id": "#root/status",
+            "title": "Status",
+            "type": "string",
+            "default": "",
+            "enum": ["success", "failed", "true", "false"],
+            "examples": [
+                "failed"
+            ],
+            "pattern": "^.*$"
+        }
+    }
+}

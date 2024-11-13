@@ -1,0 +1,81 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1680208572.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data",
+    "status"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "custom_transaction_amount",
+          "custom_transaction_total",
+          "cost_center_id",
+          "cost_center_name"
+        ],
+        "properties": {
+          "custom_transaction_amount": {
+            "$id": "#root/data/items/custom_transaction_amount",
+            "title": "Custom_transaction_amount",
+            "type": "string",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "custom_transaction_total": {
+            "$id": "#root/data/items/custom_transaction_total",
+            "title": "Custom_transaction_total",
+            "type": "integer",
+            "examples": [
+              0
+            ],
+            "default": 0
+          },
+          "cost_center_id": {
+            "$id": "#root/data/items/cost_center_id",
+            "title": "Cost_center_id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "cost_center_name": {
+            "$id": "#root/data/items/cost_center_name",
+            "title": "Cost_center_name",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Algemeen"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "success"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}

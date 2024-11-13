@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Afschrift inzien</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+<!-- start main container -->
+
+<div class="container h-100 mt-5">
+    <div class="row justify-content-center">
+        <h4 class="text-white" th:text="${'Afschrift ' + data.get(0).get('transactionRef')}"></h4>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                        <div class="col">
+                            <div class="d-flex flex-column mx-auto w-75 margin-top-col">
+                                <label class="text-white" for="rekNummer">Rekeningnummer</label>
+                                <input class="form-control" type="text" id="rekNummer" name="rekNummer"
+                                       th:value="${data.get(0).get('account_identification')}"
+                                       readonly="readonly">
+                            </div>
+                            <div class="d-flex flex-column mx-auto w-75 mt-3">
+                                <label class="text-white" for="afschriftNummer">Afschriftnummer</label>
+                                <input class="form-control" type="text" id="afschriftNummer"
+                                       name="afschriftNummer" th:value="${data.get(0).get('statement_number')}"
+                                       readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mx-auto w-75 mt-2">
+                                <h6 class="text-white">Beginsaldo</h6>
+                                <label class="text-white" for="beginCredit">Credit/debit</label>
+                                <input th:each="card : ${transaction_types}"
+                                       th:if="${card.get('id') == data.get(0).get('opening_balance_transaction_type_id')}"
+                                       th:value="${card.get('name')}"
+                                       class="form-control" type="text" id="beginCredit"
+                                       name="beginCredit"
+                                       readonly="readonly">
+                            </div>
+                            <div class="d-flex flex-column mx-auto w-75 mt-3">
+                                <label class="text-white" for="beginDatum">Datum</label>
+                                <input class="form-control" type="text" id="beginDatum" name="beginDatum"
+                                       th:value="${data.get(0).get('opening_balance_date')}" readonly="readonly">
+                            </div>
+                            <div class="d-flex flex-column mx-auto w-75 mt-3">
+                                <label class="text-white" for="beginValuta">Valuta</label>
+                                <input th:each="curr : ${currency}"
+                                       th:if="${curr.get('id') == data.get(0).get('opening_balance_currency_type_id')}"
+                                       class="form-control" type="text" id="beginValuta"
+                                       name="beginValuta"
+                                       th:value="${curr.get('currency_symbol')}"
+                                       readonly="readonly">
+                            </div>
+                            <div class="d-flex flex-column mx-auto w-75 mt-3">
+                                <label class="text-white" for="beginBedrag">Bedrag</label>
+                                <input class="form-control" type="text" id="beginBedrag"
+                                       name="beginBedrag" th:value="${data.get(0).get('opening_blanace')}"
+                                       readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column mx-auto w-75 mt-2">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="text-white">Eindsaldo</h6>
+                                    <form th:if="${auth.get('role') != '1'}" id="delete-form"
+                                          th:action="${'/view-swift-copy/delete/' + data.get(0).get('id')}"
+                                          method="post">
+                                        <button onclick="return confirm('Weet u zeker dat u dit wilt verwijder?')"
+                                                style="background: none; border:none;" class="btn-link" type="submit"
+                                                name="submit" value="submit"><img src="./img/icons/delete.png"></button>
+                                    </form>
+                                </div>
+                                <label class="text-white" for="eindCredit">Credit/debit</label>
+                                <input th:each="card : ${transaction_types}"
+                                       th:if="${card.get('id') == data.get(0).get('opening_balance_transaction_type_id')}"
+                                       th:value="${card.get('name')}"
+                                       class="form-control" type="text" id="eindCredit" name="eindCredit"
+                                       readonly="readonly">
+                            </div>
+                            <div class="d-flex flex-column mx-auto w-75 mt-3">
+                                <label class="text-white" for="eindDatum">Datum</label>
+                                <input class="form-control" type="text" id="eindDatum" name="eindDatum"
+                                       th:value="${data.get(0).get('closing_balance_date')}" readonly="readonly">
+                            </div>
+                            <div class="d-flex flex-column mx-auto w-75 mt-3">
+                                <label class="text-white" for="eindValuta">Valuta</label>
+                                <input th:each="curr : ${currency}"
+                                       th:if="${curr.get('id') == data.get(0).get('opening_balance_currency_type_id')}"
+                                       class="form-control" type="text" id="eindValuta" name="eindValuta"
+                                       th:value="${curr.get('currency_symbol')}" readonly="readonly">
+                            </div>
+                            <div class="d-flex flex-column mx-auto w-75 mt-3">
+                                <label class="text-white" for="eindBedrag">Bedrag</label>
+                                <input class="form-control mb-4" type="text" id="eindBedrag"
+                                       name="eindBedrag" th:value="${data.get(0).get('closing_balance')}"
+                                       readonly="readonly">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="split">
+
+            <div class="col-12 mt-4" th:each="data, iter : ${data}">
+                <div class="row">
+                    <div class="d-flex flex-column">
+                        <h6 class="text-white margin-left-subtitles">Transactie</h6>
+                        <div class="d-flex margin-left-subtitles">
+                            <h5 th:text="${iter.index + 1}" class="text-white"></h5>
+                            <a th:href="${'/view-transaction?id=' + data.get('statement_line_id')}">
+                                <img src="img/icons/view-record-white.png" class="view-icon ms-2 mt-1" alt="view-icon">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="col">
+                        <div class="d-flex flex-column mx-auto w-75">
+                            <label class="text-white" for="valutaDatum">Valutadatum</label>
+                            <input class="form-control" type="text" id="valutaDatum" name="valutaDatum"
+                                   th:value="${data.get('value_date')}" readonly="readonly">
+                        </div>
+                        <div class="d-flex flex-column mx-auto w-75 mt-3">
+                            <label class="text-white" for="boekDatum">Boekdatum</label>
+                            <input class="form-control" type="text" id="boekDatum" name="boekDatum"
+                                   th:value="${data.has('date_added')} ? ${data.get('date_added')} : 'N/A'">
+                        </div>
+                        <div class="d-flex flex-column mx-auto w-75 mt-3">
+                            <label class="text-white" for="transactieCredit">Credit/debit</label>
+                            <input class="form-control" type="text" id="transactieCredit"
+                                   th:each="card : ${transaction_types}"
+                                   th:if="${card.get('id') == data.get('transaction_type_id')}"
+                                   name="transactieCredit" th:value="${card.get('name')}"
+                                   readonly="readonly">
+                        </div>
+                        <div class="d-flex flex-column mx-auto w-75 mt-3">
+                            <label class="text-white" for="transactieBedrag">Bedrag</label>
+                            <input class="form-control" type="text" id="transactieBedrag"
+                                   name="transactieBedrag" th:value="${data.get('amount')}" readonly="readonly">
+                        </div>
+                        <div class="d-flex flex-column mx-auto w-75 mt-3">
+                            <label class="text-white" for="eigenOmschrijving">Eigen omschrijving</label>
+                            <input class="form-control" type="text" id="eigenOmschrijving"
+                                   name="eigenOmschrijving"
+                                   th:value="${data.has('custom_description')} ? ${data.get('custom_description')} : 'N/A'"
+                                   readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex flex-column mx-auto w-75">
+                            <label class="text-white" for="transactieType">Swift transactietype</label>
+                            <input class="form-control" type="text" id="transactieType"
+                                   name="transactieType" th:value="${data.get('transaction_type')}"
+                                   readonly="readonly">
+                        </div>
+                        <div class="d-flex flex-column mx-auto w-75 mt-3">
+                            <label class="text-white" for="betalingskenmerk">Betalingskenmerk</label>
+                            <input class="form-control" type="text" id="betalingskenmerk"
+                                   name="betalingskenmerk" th:value="${data.get('payment_reference')}"
+                                   readonly="readonly">
+                        </div>
+                        <div class="d-flex flex-column mx-auto w-75 mt-3">
+                            <label class="text-white" for="transactieReferentie">Transactiereferentie</label>
+                            <input class="form-control" type="text" id="transactieReferentie"
+                                   name="transactieReferentie" th:value="${data.get('transaction_reference')}"
+                                   readonly="readonly">
+                        </div>
+                        <div class="d-flex flex-column mx-auto w-75 mt-3">
+                            <label class="text-white">Aanvullende gegevens
+                                <input th:if="${data.get('additional_information')} != 'null'" class="form-control"
+                                       type="text" name="extraData"
+                                       th:value="${data.get('additional_information')}" readonly="readonly">
+                                <input th:unless="${data.get('additional_information')} != 'null'" class="form-control"
+                                       type="text" name="extraData"
+                                       readonly="readonly">
+                            </label>
+                        </div>
+                        <div th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}'
+                             class="d-flex flex-column mx-auto w-75 mt-3">
+                            <label class="text-white" for="kostenplaats1">Kostenplaats (plug-in)</label>
+                            <input th:each="cs : ${cost_center}"
+                                   th:if="${cs.get('id')} == ${data.get('cost_center_id')}" class="form-control"
+                                   type="text" id="kostenplaats1"
+                                   name="kostenplaats1"
+                                   th:value="${cs.get('name')}"
+                                   readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex flex-column mx-auto w-75 h-100">
+                            <label class="text-white" for="infoRekeninghouder">Informatie voor rekeninghouder</label>
+                            <textarea style="height: 350px;" class="form-control" id="infoRekeninghouder"
+                                      name="infoRekeningHouder"
+                                      th:text="${data.get('statement_line_narrative')}"
+                                      readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="split">
+
+            <div class="d-flex justify-content-center">
+                <div class="col-11 d-flex justify-content-between mt-5">
+                    <div class="col-5">
+                        <a href="/swift-copy-overview" class="btn custom-btn-general w-100" type="submit">Afschrift
+                            overzicht</a>
+                    </div>
+                    <div class="col-5">
+                        <a href="/transaction-overview" class="btn custom-btn-general w-100" type="submit">Transactie
+                            overzicht</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--&lt;!&ndash; end main container  &ndash;&gt;-->
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Afschrift overview</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+<!-- start main container -->
+<div class="h-100 d-flex justify-content-center">
+    <div class="container mt-3">
+        <div class="row">
+            <h1 class="text-white">Afschriften overzicht</h1>
+        </div>
+        <section id="errormessage" data-th-insert="~{messageHandeling :: html_message}"></section>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-12 justify-content-between d-flex">
+                        <div class="col-4">
+
+                        </div>
+                        <div>
+                            <li class="table-list-item-custom" th:if="${auth.get('role') != '1'}">
+                                <form enctype="multipart/form-data" method="post">
+                                    <label class="btn transaction-custom-btn custom-btn pt-2 pb-2" for="upload-file">Afschrift(en)
+                                        toevoegen <img class="transaction-table-icon-custom"
+                                                       src="img/icons/add-file.png"></label>
+                                    <input type="file" onchange="form.submit()" th:name="file" id="upload-file" hidden/>
+                                </form>
+                            </li>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="scroll-container" class="mt-2 row scroll-container">
+                    <div class="col-12 d-flex flex-wrap justify-content-between gap-5">
+                        <div id="swift-copy" class="d-flex flex-column card-light col-3 p-3" th:each="ref : ${data}"
+                             th:id="${'copy-' + ref.get('swiftcopyId')}">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex mt-1 mb-1 justify-content-between border-bottom border-dark h-50">
+                                    <h6>Afschrift</h6>
+                                    <span th:text="${ref.get('transactionRef')}"></span>
+                                </div>
+                            </div>
+                            <div class="d-flex border-bottom border-secondary">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            Datum toegevoegd</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span th:text="${ref.get('dateAdded')}">00:00:00:00</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>IBAN</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span th:text="${ref.get('iban')}">NLINGB8820452810</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex border-bottom border-secondary">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Aantal transacties</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span th:text="${ref.get('num_transactions')}"></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>Openingssaldo</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span th:text="${ref.get('openingBal')}"></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>Eindsaldo</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span th:text="${ref.get('closingBal')}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mt-1">
+                                <div width="200px" class="d-flex width-icons-between justify-content-between">
+                                    <a th:href="${'/view-swift-copy?id=' + ref.get('swiftcopyId')}"><img
+                                            class="view-icon mt-1"
+                                            src="./img/icons/view-record-black.png"></a>
+                                    <form th:if="${auth.get('role') != '1'}" id="delete-form"
+                                          th:action="${'/view-swift-copy/delete/' + ref.get('swiftcopyId')}"
+                                          method="post">
+                                        <button onclick="return confirm('Weet u zeker dat u dit wilt verwijderen?')"
+                                                style="background: none; border:none;" class="btn-link" type="submit"
+                                                name="submit" value="submit"><img height="20px"
+                                                                                  src="./img/icons/delete.png"></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:each="i : ${#numbers.sequence(0, data.length % 4)}"
+                             class="d-flex flex-column fill-empty-space col-3 p-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end main container  -->
+</body>
+</html>

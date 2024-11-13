@@ -1,0 +1,47 @@
+<!-- kostenplaats modal start -->
+<div th:fragment="html_cost_center_statistics"
+     th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}' id="costCenterStatistics"
+     class="modal modal-xl" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="true" min-height="500px">
+    <script src="/javascript/chart-generate.js"></script>
+    <script th:inline="javascript">  </script>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kostenplaats statistieken</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="me-3 mt-3">
+                    <button class="btn btn-outline-secondary" onclick="chartConfig.type = 'line';chart.update()">
+                        Lijn grafiek
+                    </button>
+                </div>
+                <div class="ms-3 me-3 mt-3">
+                    <button class="btn btn-outline-secondary" onclick="chartConfig.type = 'bar';chart.update()">
+                        Staaf grafiek
+                    </button>
+                </div>
+                <div class="ms-3 mt-3">
+                    <button class="btn btn-outline-secondary" onclick="chartConfig.type = 'bubble';chart.update()">
+                        Bubbel grafiek
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <canvas id="chart"></canvas>
+                </div>
+
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    // retrieve the specific configurations
+                    var chartConfig = generateChartData("bar", [(${cost_center_mt940})])
+
+                    // Create the chart with the config
+                    chart = new Chart(document.getElementById('chart'), chartConfig)
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- kostenplaats modal end -->

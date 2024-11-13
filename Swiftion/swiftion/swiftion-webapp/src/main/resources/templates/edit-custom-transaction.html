@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Edit transaction</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+<!-- start main container -->
+<div class="h-100 d-flex justify-content-center">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1 th:if="${auth.get('role') != '1'}" class="text-white"> Kasgeld transactie wijzigen</h1>
+                <h1 th:unless="${auth.get('role') != '1'}" class="text-white"> Kasgeld transactie inzien</h1>
+            </div>
+            <div class="col-12">
+                <section id="errormessage" data-th-insert="~{messageHandeling :: html_message}"></section>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12">
+                                <div class="w-100 d-flex justify-content-end">
+                                    <form th:if="${auth.get('role') != '1'}" id="delete-form"
+                                          th:action="${'/edit-custom-transaction/delete/' + data.get(0).get('custom_transaction_id')}"
+                                          method="post">
+                                        <button onclick="return confirm('Weet u zeker dat u dit wilt verwijderen?')"
+                                                style="background: none; border:none;" class="btn-link" type="submit"
+                                                name="submit" value="submit"><img src="./img/icons/delete.png"></button>
+                                    </form>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <form id="update-form" class="mt-5 col-11 d-flex justify-content-between"
+                                          method="POST"
+                                          th:action="${'/edit-custom-transaction/update/' + data.get(0).get('custom_transaction_id')}">
+                                        <div class="col-3">
+                                            <div class="mb-3">
+                                                <label class="form-label text-white w-100">Datum
+                                                    betaling
+
+                                                    <input th:if="${auth.get('role') != '1'}" name="payment-date"
+                                                           type="date"
+                                                           class="form-control" id="amount"
+                                                           th:value="${data.get(0).get('payment_date')}">
+                                                    <input readonly th:if="${auth.get('role') == '1'}"
+                                                           name="payment-date"
+                                                           type="text" class="form-control"
+                                                           th:value="${data.get(0).get('payment_date')}">
+                                                </label>
+                                            </div>
+                                            <div class="mb-3 mt-4">
+                                                <label for="currency" class="form-label text-white w-100">Valuta</label>
+                                                <input readonly name="currency" type="text" class="form-control"
+                                                       id="currency" th:value="${data.get(0).get('currency_symbol')}">
+                                            </div>
+                                            <div class="mb-3 mt-4">
+                                                <label class="form-label text-white w-100">Bedrag
+                                                    <input th:if="${auth.get('role') != '1'}" name="amount" type="text"
+                                                           class="form-control" id="amount"
+                                                           th:value="${data.get(0).get('amount')}">
+                                                    <input readonly th:if="${auth.get('role') == '1'}" name="amount"
+                                                           type="text" class="form-control"
+                                                           th:value="${data.get(0).get('amount')}">
+                                                </label>
+                                            </div>
+
+                                            <div class="mb-3 mt-4">
+                                                <label th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}'
+                                                       class="text-white w-100">Kostenplaats
+                                                    <select th:if="${auth.get('role') != '1'}" name="cost-center"
+                                                            class="form-control" id="cost-center">
+                                                        <option
+                                                                th:each="cost_center : ${cost_center}"
+                                                                th:selected="${cost_center.get('id') == data.get(0).get('cost_center_id')}"
+                                                                th:value="${cost_center.get('id')}"
+                                                                th:text="${cost_center.get('name')}">
+                                                        </option>
+                                                    </select>
+                                                    <input readonly type="text" class="form-control"
+                                                           th:if="${auth.get('role') == '1'}"
+                                                           th:value="${cost_center.get(0).get('name')}">
+                                                </label>
+                                                <input type="hidden" name="cost-center"
+                                                       th:value="${data.get(0).get('cost_center_id')}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-7">
+                                            <label class="form-label w-100 text-white">Omschrijving
+                                                <textarea th:if="${auth.get('role') != '1'}"
+                                                          class="form-control w-100 transaction-description-custom-styling"
+                                                          name="description"
+                                                          th:text="${data.get(0).get('description')}"></textarea>
+
+                                                <textarea th:if="${auth.get('role') == '1'}"
+                                                          class="form-control w-100 transaction-description-custom-styling"
+                                                          name="description" th:text="${data.get(0).get('description')}"
+                                                          readonly></textarea>
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="col-11 d-flex justify-content-between mt-5">
+                                        <div class="col-4">
+                                            <a href="/transaction-overview" class="btn custom-btn-general w-100"
+                                               type="submit">Transactie
+                                                overzicht</a>
+                                        </div>
+                                        <div class="col-4">
+                                            <a th:if="${auth.get('role') != '1'}"
+                                               onclick="document.getElementById('update-form').submit()"
+                                               class="btn custom-btn-general w-100" type="submit">Wijzigingen
+                                                opslaan</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end main container  -->
+</body>
+</html>

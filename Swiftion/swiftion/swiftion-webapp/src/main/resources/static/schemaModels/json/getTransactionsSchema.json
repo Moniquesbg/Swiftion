@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "DataType": {
+      "type": "object",
+      "properties": {
+        "message": {"type": "string"}
+      }
+    },
+    "RootType": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "data": {"$ref": "#/definitions/DataType"},
+        "status": {"type": "string"}
+      }
+    }
+  },
+  "properties": {
+    "root": {"$ref": "#/definitions/RootType"}
+  }
+}

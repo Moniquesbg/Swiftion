@@ -1,0 +1,93 @@
+version: '2.0'
+name: 'swiftion'
+services:
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysqldb
+    restart: unless-stopped
+#    ports:
+#      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      TZ: Europe/Amsterdam
+    volumes:
+      - ./mysql/assets/db_swiftion.sql:/docker-entrypoint-initdb.d/db_swiftion.sql
+      - ./mysql/assets/db_swiftion_test.sql:/docker-entrypoint-initdb.d/db_swiftion_test.sql
+      - ./mysql/assets/db_users.sql:/docker-entrypoint-initdb.d/db_users.sql
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - mysqldb
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: unless-stopped
+    ports:
+      - 8082:80
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+#    ports:
+#      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: unless-stopped
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${ME_CONFIG_MONGODB_ADMINUSERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${ME_CONFIG_MONGODB_ADMINPASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/
+
+  swiftion-parser:
+    restart: unless-stopped
+    container_name: swiftion-parser
+    volumes:
+      - ../swiftion-parser:/app
+      - ../.env:/app/.env
+    build:
+      context: ../swiftion-parser
+      dockerfile: Dockerfile
+      cache_from:
+        - docker_swiftion-parser:cache
+    ports:
+      - 2626:2626
+
+  swiftion-api:
+    restart: unless-stopped
+    container_name: swiftion-api
+    volumes:
+      - ../swiftion-api:/app
+      - ../.env:/app/.env
+    build:
+      context: ../swiftion-api
+      dockerfile: Dockerfile
+      cache_from:
+        - docker_swiftion-api:cache
+#    ports:
+#      - 8390:8390
+
+  swiftion-webapp:
+    restart: unless-stopped
+    container_name: swiftion-webapp
+    volumes:
+      - ../swiftion-webapp:/app
+      - ../.env:/app/.env
+    build:
+      context: ../swiftion-webapp
+      dockerfile: Dockerfile
+      cache_from:
+        - docker_swiftion-webapp:cache
+    ports:
+      - 80:8080

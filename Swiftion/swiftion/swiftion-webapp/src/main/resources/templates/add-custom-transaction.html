@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Add transaction</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+<!-- start main container -->
+<div class="h-100 d-flex justify-content-center">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-white"> Kasgeld transactie toevoegen</h1>
+            </div>
+            <section id="errormessage" data-th-insert="~{messageHandeling :: html_message}"></section>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-center">
+                                    <form class="mt-5 col-11 d-flex justify-content-between" method="POST"
+                                          action="/add-custom-transaction/insert">
+                                        <div class="col-3">
+                                            <div class="mb-3">
+                                                <label for="payment-date" class="form-label text-white w-100">Datum
+                                                    betaling</label>
+                                                <input name="payment-date" type="date" class="form-control"
+                                                       id="payment-date" required>
+                                            </div>
+                                            <div class="mb-3 mt-4">
+                                                <label for="currency" class="text-white w-100">Valuta</label>
+                                                <select name="currency" class="form-control" required id="currency">
+                                                    <option th:each="currency: ${currency}"
+                                                            th:value="${currency.get('id')}"
+                                                            th:text="${currency.get('currency_symbol')}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3 mt-4">
+                                                <label for="amount" class="form-label text-white w-100">Bedrag</label>
+                                                <input name="amount" required type="number" min="0.00" max="10000.00"
+                                                       step="0.01" class="form-control" id="amount">
+                                            </div>
+                                            <div th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}'
+                                                 class="mb-3 mt-4">
+                                                <label for="cost-center" class="text-white w-100">Kostenplaats</label>
+                                                <select name="cost-center" required class="form-control"
+                                                        id="cost-center">
+                                                    <option th:each="cost_center: ${cost_center}"
+                                                            th:value="${cost_center.get('id')}"
+                                                            th:text="${cost_center.get('name')}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-7">
+                                            <label for="description" class="form-label text-white">Omschrijving</label>
+                                            <textarea required
+                                                      class="form-control w-100 transaction-description-custom-styling"
+                                                      id="description" name="description"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="col-11 d-flex justify-content-between mt-5">
+                                        <div class="col-5">
+                                            <a href="/transaction-overview" class="btn custom-btn-general w-100">Transactie
+                                                overzicht</a>
+                                        </div>
+                                        <div class="col-5">
+                                            <button class="btn custom-btn-general w-100" type="button"
+                                                    onclick="document.querySelector('form').submit()">
+                                                Kasgeld transactie opslaan
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end main container  -->
+</body>
+</html>

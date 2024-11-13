@@ -1,0 +1,107 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1679574420.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data",
+    "status"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "firstname",
+          "role_id",
+          "rolename",
+          "id",
+          "email",
+          "lastname"
+        ],
+        "properties": {
+          "firstname": {
+            "$id": "#root/data/items/firstname",
+            "title": "Firstname",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "testvoornaam"
+            ],
+            "pattern": "^.*$"
+          },
+          "role_id": {
+            "$id": "#root/data/items/role_id",
+            "title": "Role_id",
+            "type": "integer",
+            "enum": [1, 2],
+            "examples": [
+              2
+            ],
+            "default": 0
+          },
+          "rolename": {
+            "$id": "#root/data/items/rolename",
+            "title": "Rolename",
+            "type": "string",
+            "enum" : ["Gebruiker", "Penningmeester"],
+            "default": "",
+            "examples": [
+              "Penningmeester"
+            ],
+            "pattern": "^.*$"
+          },
+          "id": {
+            "$id": "#root/data/items/id",
+            "title": "Id",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "email": {
+            "$id": "#root/data/items/email",
+            "title": "Email",
+            "format": "email",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "test@test.nl"
+            ],
+            "pattern": "^.*$"
+          },
+          "lastname": {
+            "$id": "#root/data/items/lastname",
+            "title": "Lastname",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "testachternaam"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "enum": ["success", "failed", "true", "false"],
+      "default": "",
+      "examples": [
+        "success"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}

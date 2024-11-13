@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - User overview</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+<!-- start main container -->
+<div class="h-100 d-flex justify-content-center">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-white">Gebruikers overzicht</h1>
+            </div>
+            <section id="errormessage" data-th-insert="~{messageHandeling :: html_message}"></section>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="row">
+                                <div class="form-group col-12 justify-content-between d-flex">
+                                    <div class="col-4">
+                                        <div class="input-group mb-3">
+                                            <input id="user-search" type="text" class="form-control"
+                                                   placeholder="Search..."
+                                                   aria-label="search">
+                                            <div class="input-group-append">
+                                                <button class="btn input-search-icon" type="button">
+                                                    <img height="30px" src="./img/icons/search-icon.svg">
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <ul class="list-group list-group-horizontal">
+                                            <li th:if="${auth.get('role') != '1'}" class="table-list-item-custom">
+                                                <a href="/add-user">
+                                                    <button class="btn user-overview-custom-btn custom-btn pt-2 pb-2"
+                                                            name="addUser"> Gebruiker
+                                                        toevoegen &nbsp;
+                                                        <img class="user-overview-table-icon-custom"
+                                                             src="img/icons/add-user.png">
+                                                    </button>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 row">
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="row-custom-styling transaction-row-custom-styling user-overview-row-custom-styling w-100">
+                                            <table id="user-table" class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">Gebruikersnaam</th>
+                                                    <th scope="col">Voornaam</th>
+                                                    <th scope="col">Achternaam</th>
+                                                    <th scope="col">Rol</th>
+                                                    <th scope="col">Actie</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="user : ${users}" class="tr-custom-style">
+                                                    <td th:text="${user.get('user_email')}"></td>
+                                                    <td th:text="${user.get('user_firstname')}"></td>
+                                                    <td th:text="${user.get('user_lastname')}"></td>
+                                                    <td>
+                                                        <form th:if="${auth.get('role') != '1'}" method="POST"
+                                                              th:action="'/edit-user/update-role/'+${user.get('user_id')}">
+                                                            <select name="role_id" class="select-custom-styling"
+                                                                    onchange="this.form.submit()">
+                                                                <option selected th:text="${user.get('role_name')}"
+                                                                        th:value="${user.get('role_id')}">
+                                                                </option>
+                                                                <option th:each="role : ${roles}"
+                                                                        th:if="${user.get('role_name')} != ${role.get('name')}"
+                                                                        th:text="${role.get('name')}"
+                                                                        th:value="${role.get('role_id')}">
+                                                                </option>
+                                                            </select>
+                                                        </form>
+                                                        <p th:if="${auth.get('role') == '1'}"
+                                                           th:text="${user.get('role_name')}"></p>
+                                                    </td>
+                                                    <td>
+                                                        <ul class="list-group list-group-horizontal">
+                                                            <li class="me-4 table-list-item-custom">
+                                                                <a th:href="'/edit-user?id=' + ${user.get('user_id')}">
+                                                                    <img class="user-overview-table-icon-custom"
+                                                                         src="img/icons/view-record-black.png">
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(function () {
+        $("#user-search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#user-table > tbody > tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+</script>
+<!-- search table stop -->
+<!-- end main container  -->
+</body>
+
+</html>

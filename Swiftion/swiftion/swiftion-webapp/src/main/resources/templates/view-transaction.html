@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-insert="~{head :: html_head}">
+    <title id="pageTitle">Swiftion - Transactie inzien</title>
+</head>
+<body class="bg-general">
+<!-- start navbar -->
+<header id="navbar" data-th-insert="~{navbar :: html_navbar}"></header>
+<!-- end navbar -->
+<!-- start main container -->
+<div class="container h-100 mt-5">
+    <h1 class="text-white" th:text="${'Transactie ' + data.get(0).get('transaction_reference')}"></h1>
+    <div class="card">
+        <div class="card-body">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12">
+                    <section id="errormessage" data-th-insert="~{messageHandeling :: html_message}"></section>
+                    <div class="d-flex justify-content-center">
+                        <form th:action="${'/view-transaction/update/' + data.get(0).get('id')}"
+                              class="mt-5 col-11 d-flex justify-content-between" id="transaction-update" method="POST">
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label for="currency-date" class="form-label text-white w-100">Valuta Datum</label>
+                                    <input name="currency-date" type="text" class="form-control" id="currency-date"
+                                           th:value="${data.get(0).get('value_date')}" readonly="readonly">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="booking-date" class="form-label text-white w-100">Boekdatum</label>
+                                    <input name="boeking-date" type="text" class="form-control" id="booking-date"
+                                           th:value="${data.get(0).get('entry_date')}" readonly="readonly">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="card-type" class="form-label text-white w-100">Credit/debit</label>
+                                    <input th:each="card : ${transaction_types}"
+                                           th:if="${card.get('id') == data.get(0).get('transaction_type_id')}"
+                                           th:value="${card.get('name')}"
+                                           class="form-control" type="text" id="card-type"
+                                           name="beginCredit"
+                                           readonly="readonly">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="amount" class="form-label text-white w-100">Bedrag</label>
+                                    <input name="amount" type="text" class="form-control" id="amount"
+                                           th:value="${data.get(0).get('amount')}" readonly="readonly">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="own-description" class="form-label text-white w-100">Eigen
+                                        omschrijving</label>
+                                    <input th:if="${auth.get('role') != '1'}" name="own-description" type="text"
+                                           class="form-control" id="own-description"
+                                           th:value="${data.get(0).get('custom_description')}">
+                                    <input th:if="${auth.get('role') == '1'}" name="cost-center" type="text"
+                                           class="form-control" id="cost-center"
+                                           th:value="${data.get(0).get('custom_description')}" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label for="swift-transaction-type" class="form-label text-white w-100">Swift
+                                        transactietype</label>
+                                    <input name="swift-transaction-type" type="text" class="form-control"
+                                           id="swift-transaction-type"
+                                           th:value="${data.get(0).get('transaction_type')}" readonly="readonly">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="payment-reference"
+                                           class="form-label text-white w-100">Betalingskenmerk</label>
+                                    <input name="payment-reference" type="text" class="form-control"
+                                           id="payment-reference"
+                                           th:value="${data.get(0).get('payment_reference')}" readonly="readonly">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="transaction-reference" class="form-label text-white w-100">Transactiereferentie</label>
+                                    <input name="extra-details" type="text" class="form-control"
+                                           id="transaction-reference"
+                                           th:value="${data.get(0).get('transaction_reference')}"
+                                           readonly="readonly">
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="form-label text-white w-100">
+                                        Aanvullende gegevens
+                                        <input th:if='${data.get(0).get("additional_information") != "null"}'
+                                               class="form-control mt-2" type="text" name="extra-details"
+                                               th:value="${data.get(0).get('additional_information')}"
+                                               readonly="readonly">
+                                        <input th:unless='${data.get(0).get("additional_information") != "null"}'
+                                               class="form-control mt-2" type="text" name="extra-details"
+                                               readonly="readonly">
+                                    </label>
+                                </div>
+                                <div th:if='${plugins.get(0).get("online") == true || plugins.get(0).get("online") == 1}'
+                                     class="mb-3">
+                                    <label class="form-label text-white w-100">Kostenplaats
+                                        <select th:if="${auth.get('role') != '1'}" name="cost-center"
+                                                class="form-control mt-2">
+                                            <option
+                                                    th:each="cost_center : ${cost_center}"
+                                                    th:selected="${cost_center.get('id') == data.get(0).get('cost_center_id')}"
+                                                    th:value="${cost_center.get('id')}"
+                                                    th:text="${cost_center.get('name')}">
+                                            </option>
+                                        </select>
+                                        <input th:if="${auth.get('role') == '1'}" name="cost-center" type="text"
+                                               class="form-control mt-2"
+                                               th:value="${cost_center.get(0).get('name')}" readonly="readonly">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label for="information-for-account-holder" class="form-label text-white w-100">Informatie
+                                        voor rekeninghouder</label>
+                                    <textarea name="information-for-account-holder" type="text" class="form-control"
+                                              id="information-for-account-holder"
+                                              th:text="${data.get(0).get('statement_line_narrative')}"
+                                              readonly="readonly"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="mt-5 col-11 d-flex justify-content-between">
+                            <div class="col-3">
+                                <a th:href="${'/view-swift-copy?id=' + data.get(0).get('swift_copy_id')}">
+                                    <button class="custom-btn-general mx-auto w-100 h-100" type="submit">
+                                        Bijbehorend afschrift
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <button th:if="${auth.get('role') != '1'}"
+                                        class="custom-btn-general mx-auto w-100 h-100" type="submit"
+                                        onclick="document.getElementById('transaction-update').submit()">Opslaan
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <a href="/transaction-overview">
+                                    <button class="custom-btn-general mx-auto w-100 h-100" type="submit">
+                                        Transactie overzicht
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end main container  -->
+</body>
+
+</html>

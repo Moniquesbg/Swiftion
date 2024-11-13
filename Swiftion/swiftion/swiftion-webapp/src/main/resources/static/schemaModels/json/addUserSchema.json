@@ -1,0 +1,63 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1679564043.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data",
+    "success"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "role_id",
+          "name"
+        ],
+        "properties": {
+          "role_id": {
+            "$id": "#root/data/items/role_id",
+            "title": "Role_id",
+            "enum": [1 ,2],
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "name": {
+            "$id": "#root/data/items/name",
+            "title": "Name",
+            "type": "string",
+            "default": "",
+            "enum" : ["Gebruiker", "Penningmeester"],
+            "examples": [
+              "Gebruiker"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    },
+    "success": {
+      "$id": "#root/success",
+      "title": "Success",
+      "type": "string",
+      "enum": ["success", "failed", "true", "false"],
+      "default": "",
+      "examples": [
+        "true"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}

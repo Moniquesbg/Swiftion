@@ -1,0 +1,441 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1679056069.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "accountInformation",
+    "fileHeader"
+  ],
+  "properties": {
+    "accountInformation": {
+      "$id": "#root/accountInformation",
+      "title": "Accountinformation",
+      "type": "object",
+      "required": [
+        "accountIdentification",
+        "transactionReferenceNumber",
+        "finalOpeningBalance",
+        "transactions",
+        "statementNumber",
+        "finalClosingBalance",
+        "availableBalance"
+      ],
+      "properties": {
+        "accountIdentification": {
+          "$id": "#root/accountInformation/accountIdentification",
+          "title": "Accountidentification",
+          "type": "object",
+          "required": [
+            "tag",
+            "accountNumber"
+          ],
+          "properties": {
+            "tag": {
+              "$id": "#root/accountInformation/accountIdentification/tag",
+              "title": "Tag",
+              "type": "string",
+              "default": "",
+              "pattern": "^25$"
+            },
+            "accountNumber": {
+              "$id": "#root/accountInformation/accountIdentification/accountNumber",
+              "title": "Accountnumber",
+              "type": "string",
+              "default": "",
+              "pattern": "^.*$"
+            }
+          }
+        }
+      ,
+        "transactionReferenceNumber": {
+          "$id": "#root/accountInformation/transactionReferenceNumber",
+          "title": "Transactionreferencenumber",
+          "type": "object",
+          "required": [
+            "referenceNumber",
+            "tag"
+          ],
+          "properties": {
+            "referenceNumber": {
+              "$id": "#root/accountInformation/transactionReferenceNumber/referenceNumber",
+              "title": "Referencenumber",
+              "type": "string",
+              "default": "",
+              "pattern": "^.*$"
+            },
+            "tag": {
+              "$id": "#root/accountInformation/transactionReferenceNumber/tag",
+              "title": "Tag",
+              "type": "string",
+              "default": "",
+              "pattern": "^20$"
+            }
+          }
+        }
+      ,
+        "finalOpeningBalance": {
+          "$id": "#root/accountInformation/finalOpeningBalance",
+          "title": "Finalopeningbalance",
+          "type": "object",
+          "required": [
+            "date",
+            "amount",
+            "currency",
+            "tag",
+            "creditDebitType"
+          ],
+          "properties": {
+            "date": {
+              "$id": "#root/accountInformation/finalOpeningBalance/date",
+              "title": "Date",
+              "type": "string",
+              "default": "",
+              "pattern": "^\\d{6}$"
+            },
+            "amount": {
+              "$id": "#root/accountInformation/finalOpeningBalance/amount",
+              "title": "Amount",
+              "type": "string",
+              "default": "",
+              "pattern": "^[0-9]+([.,][0-9]{1,2})?$"
+            },
+            "currency": {
+              "$id": "#root/accountInformation/finalOpeningBalance/currency",
+              "title": "Currency",
+              "type": "string",
+              "default": "",
+              "pattern": "^[A-Z]{3}$"
+            },
+            "tag": {
+              "$id": "#root/accountInformation/finalOpeningBalance/tag",
+              "title": "Tag",
+              "type": "string",
+              "default": "",
+              "pattern": "^60F$"
+            },
+            "creditDebitType": {
+              "$id": "#root/accountInformation/finalOpeningBalance/creditDebitType",
+              "title": "Creditdebittype",
+              "type": "string",
+              "default": "",
+              "pattern": "^[CD]$"
+            }
+          }
+        }
+      ,
+        "transactions": {
+          "$id": "#root/accountInformation/transactions",
+          "title": "Transactions",
+          "type": "array",
+          "default": [],
+          "items":{
+            "$id": "#root/accountInformation/transactions/items",
+            "title": "Items",
+            "type": "object",
+            "required": [
+              "transaction"
+            ],
+            "properties": {
+              "transaction": {
+                "$id": "#root/accountInformation/transactions/items/transaction",
+                "title": "Transaction",
+                "type": "object",
+                "required": [
+                  "transactionDetails",
+                  "statementLine"
+                ],
+                "properties": {
+                  "transactionDetails": {
+                    "$id": "#root/accountInformation/transactions/items/transaction/transactionDetails",
+                    "title": "Transactiondetails",
+                    "type": "object",
+                    "required": [
+                      "transactionDetails",
+                      "tag"
+                    ],
+                    "properties": {
+                      "transactionDetails": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/transactionDetails/transactionDetails",
+                        "title": "Transactiondetails",
+                        "type": "string",
+                        "default": "",
+                        "pattern": "^.*$"
+                      },
+                      "tag": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/transactionDetails/tag",
+                        "title": "Tag",
+                        "type": "string",
+                        "default": "",
+                        "pattern": "^86$"
+                      }
+                    }
+                  }
+                ,
+                  "statementLine": {
+                    "$id": "#root/accountInformation/transactions/items/transaction/statementLine",
+                    "title": "Statementline",
+                    "type": "object",
+                    "required": [
+                      "transactionType",
+                      "entryDate",
+                      "transactionReference",
+                      "tag",
+                      "valueDate",
+                      "creditDebitType",
+                      "transactionValue"
+                    ],
+                    "properties": {
+                      "transactionType": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/statementLine/transactionType",
+                        "title": "Transactiontype",
+                        "type": "string",
+                        "default": "",
+                        "pattern": ".*N.*"
+                      },
+                      "entryDate": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/statementLine/entryDate",
+                        "title": "Entrydate",
+                        "type": "string",
+                        "default": "",
+                        "pattern": "^\\d{4}$"
+                      },
+                      "transactionReference": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/statementLine/transactionReference",
+                        "title": "Transactionreference",
+                        "type": "string",
+                        "default": "",
+                        "pattern": "^.*$"
+                      },
+                      "supplementaryDetails": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/statementLine/supplementaryDetails",
+                        "title": "Supplementarydetails",
+                        "type": "string",
+                        "default": "",
+                        "pattern": "^.*$"
+                      },
+                      "tag": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/statementLine/tag",
+                        "title": "Tag",
+                        "type": "string",
+                        "default": "",
+                        "pattern": "^61$"
+                      },
+                      "valueDate": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/statementLine/valueDate",
+                        "title": "Valuedate",
+                        "type": "string",
+                        "default": "",
+                        "pattern": "^\\d{6}$"
+                      },
+                      "creditDebitType": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/statementLine/creditDebitType",
+                        "title": "Creditdebittype",
+                        "type": "string",
+                        "default": "",
+                        "pattern": "^[CD]$"
+                      },
+                      "transactionValue": {
+                        "$id": "#root/accountInformation/transactions/items/transaction/statementLine/transactionValue",
+                        "title": "Transactionvalue",
+                        "type": "string",
+                        "default": "",
+                        "pattern": "^[0-9]+([.,][0-9]{1,2})?$"
+                      }
+                    }
+                  }
+
+                }
+              }
+
+            }
+          }
+
+        },
+        "statementNumber": {
+          "$id": "#root/accountInformation/statementNumber",
+          "title": "Statementnumber",
+          "type": "object",
+          "required": [
+            "tag",
+            "statementNumber"
+          ],
+          "properties": {
+            "tag": {
+              "$id": "#root/accountInformation/statementNumber/tag",
+              "title": "Tag",
+              "type": "string",
+              "default": "",
+              "pattern": "^28C$"
+            },
+            "statementNumber": {
+              "$id": "#root/accountInformation/statementNumber/statementNumber",
+              "title": "Statementnumber",
+              "type": "string",
+              "default": ""
+            }
+          }
+        }
+      ,
+        "finalClosingBalance": {
+          "$id": "#root/accountInformation/finalClosingBalance",
+          "title": "Finalclosingbalance",
+          "type": "object",
+          "required": [
+            "date",
+            "amount",
+            "currency",
+            "tag",
+            "creditDebitType"
+          ],
+          "properties": {
+            "date": {
+              "$id": "#root/accountInformation/finalClosingBalance/date",
+              "title": "Date",
+              "type": "string",
+              "default": "",
+              "pattern": "^\\d{6}$"
+            },
+            "amount": {
+              "$id": "#root/accountInformation/finalClosingBalance/amount",
+              "title": "Amount",
+              "type": "string",
+              "default": "",
+              "pattern": "^[0-9]+([.,][0-9]{1,2})?$"
+            },
+            "currency": {
+              "$id": "#root/accountInformation/finalClosingBalance/currency",
+              "title": "Currency",
+              "type": "string",
+              "default": "",
+              "pattern": "^[A-Z]{3}$"
+            },
+            "tag": {
+              "$id": "#root/accountInformation/finalClosingBalance/tag",
+              "title": "Tag",
+              "type": "string",
+              "default": "",
+              "pattern": "^62F$"
+            },
+            "creditDebitType": {
+              "$id": "#root/accountInformation/finalClosingBalance/creditDebitType",
+              "title": "Creditdebittype",
+              "type": "string",
+              "default": "",
+              "pattern": "^[CD]$"
+            }
+          }
+        }
+      ,
+        "availableBalance": {
+          "$id": "#root/accountInformation/availableBalance",
+          "title": "Availablebalance",
+          "type": "object",
+          "required": [
+            "date",
+            "amount",
+            "currency",
+            "tag",
+            "creditDebitType"
+          ],
+          "properties": {
+            "date": {
+              "$id": "#root/accountInformation/availableBalance/date",
+              "title": "Date",
+              "type": "string",
+              "default": "",
+              "pattern": "^\\d{6}$"
+            },
+            "amount": {
+              "$id": "#root/accountInformation/availableBalance/amount",
+              "title": "Amount",
+              "type": "string",
+              "default": "",
+              "pattern": "^[0-9]+([.,][0-9]{1,2})?$"
+            },
+            "currency": {
+              "$id": "#root/accountInformation/availableBalance/currency",
+              "title": "Currency",
+              "type": "string",
+              "default": "",
+              "pattern": "^[A-Z]{3}$"
+            },
+            "tag": {
+              "$id": "#root/accountInformation/availableBalance/tag",
+              "title": "Tag",
+              "type": "string",
+              "default": "",
+              "pattern": "^64$"
+            },
+            "creditDebitType": {
+              "$id": "#root/accountInformation/availableBalance/creditDebitType",
+              "title": "Creditdebittype",
+              "type": "string",
+              "default": "",
+              "pattern": "^[CD]$"
+            }
+          }
+        }
+      }
+    }
+  ,
+    "fileHeader": {
+      "$id": "#root/fileHeader",
+      "title": "Fileheader",
+      "type": "object",
+      "required": [
+        "sequenceNumber",
+        "messageType",
+        "receiver",
+        "sessionNumber",
+        "sender",
+        "applicationId"
+      ],
+      "properties": {
+        "sequenceNumber": {
+          "$id": "#root/fileHeader/sequenceNumber",
+          "title": "Sequencenumber",
+          "type": "string",
+          "default": "",
+          "pattern": "^.*$"
+        },
+        "messageType": {
+          "$id": "#root/fileHeader/messageType",
+          "title": "Messagetype",
+          "type": "string",
+          "default": "",
+          "pattern": "^940$"
+        },
+        "receiver": {
+          "$id": "#root/fileHeader/receiver",
+          "title": "Receiver",
+          "type": "string",
+          "default": "",
+          "pattern": "^.*$"
+        },
+        "sessionNumber": {
+          "$id": "#root/fileHeader/sessionNumber",
+          "title": "Sessionnumber",
+          "type": "string",
+          "default": "",
+          "pattern": "^.*$"
+        },
+        "sender": {
+          "$id": "#root/fileHeader/sender",
+          "title": "Sender",
+          "type": "string",
+          "default": "",
+          "pattern": "^.*$"
+        },
+        "applicationId": {
+          "$id": "#root/fileHeader/applicationId",
+          "title": "Applicationid",
+          "type": "string",
+          "default": "",
+          "pattern": "^.*$"
+        }
+      }
+    }
+  }
+}

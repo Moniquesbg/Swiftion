@@ -1,0 +1,37 @@
+#####################################################
+##### MYSQL details for connecting from the app #####
+#####################################################
+mysql_host=mysqldb
+mysql_username=root
+mysql_password=test
+mysql_port=3306
+mysql_database=db_swiftion_test
+
+##################################################
+##### MySQL creds (root:MYSQL_ROOT_PASSWORD) #####
+##################################################
+MYSQL_ROOT_PASSWORD=test
+
+#####################################
+###### MongoDB container config #####
+#####################################
+MONGO_URL=mongodb://test:test@mongodb:27017/
+MONGODB_DB=Swiftion
+
+#########################
+###### Swiftion API #####
+#########################
+API_TOKEN=TOKEN
+API_PATH=http://swiftion-api
+API_PORT=8390
+
+############################
+###### Swiftion Parser #####
+############################
+PARSER_PATH=http://swiftion-parser
+PARSER_PORT=2626
+
+###########################
+##### backup purposes #####
+###########################
+CONTAINER_ID=f9

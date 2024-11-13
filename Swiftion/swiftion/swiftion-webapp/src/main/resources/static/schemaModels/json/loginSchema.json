@@ -1,0 +1,99 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1679571054.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data",
+    "status"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "password",
+          "roleId",
+          "roleName",
+          "userId",
+          "email"
+        ],
+        "properties": {
+          "password": {
+            "$id": "#root/data/items/password",
+            "title": "Password",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "$2a$05$vVyvmoQIcPdbyInkCdXu.e9JPxDZxzlcdt1t2ePzRoIl.7WHuaYKK"
+            ],
+            "pattern": "^\\$2[ayb]\\$.{56}$"
+          },
+          "roleId": {
+            "$id": "#root/data/items/roleId",
+            "title": "Roleid",
+            "enum": [1,2],
+            "type": "integer",
+            "enum": [1, 2],
+            "examples": [
+              2
+            ],
+            "default": 0
+          },
+          "roleName": {
+            "$id": "#root/data/items/roleName",
+            "title": "Rolename",
+            "type": "string",
+            "enum": ["Gebruiker", "Penningmeester"],
+            "default": "",
+            "enum" : ["Gebruiker", "Penningmeester"],
+            "examples": [
+              "Penningmeester"
+            ],
+            "pattern": "^.*$"
+          },
+          "userId": {
+            "$id": "#root/data/items/userId",
+            "title": "Userid",
+            "type": "integer",
+            "examples": [
+              1
+            ],
+            "default": 0
+          },
+          "email": {
+            "$id": "#root/data/items/email",
+            "title": "Email",
+            "format": "email",
+            "type": "string",
+            "format" : "email",
+            "default": "",
+            "examples": [
+              "test@test.nl"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "default": "",
+      "enum": ["success", "failed", "true", "false"],
+      "examples": [
+        "success"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}
