@@ -31,13 +31,13 @@ In order to start the Docker environment, **2** `.env` files need to be set. Und
 can be found with remaining details that need to be filled in for everything except the container ID (the container ID is for backup purposes).
 Create a .env file in the same directory as the `env-template` folder and set in the correct configuration details.
 
-![img_2.png](.gitlab/readme/img_2.png)
+![img_2.png](Swiftion/.gitlab/readme/img_2.png)
 
 Once the `.env` file in the Swiftion folder is set, one remaining `.env` file needs to be set with the correct details. 
 Again, create a .env file from the template that can be found in the `docker` folder This `.env` file can be found in the `docker` folder, 
 next to the `docker-compose.yml` file.
 
-![img_3.png](.gitlab/readme/img_3.png)
+![img_3.png](Swiftion/.gitlab/readme/img_3.png)
 
 From this point, it is possible to start the docker containers through the `docker-compose.yml` file.
 
@@ -51,5 +51,6 @@ The default credentials for logging in as a `Gebruikker` on the Swiftion webapp 
 `test@test.nl`:`test`
 
 
+## Authors
 
-
+@Moniquesbg, @SteffanvanderWerf02, @NHL-Michel, @jesseoost
